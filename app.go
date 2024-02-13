@@ -13,7 +13,7 @@ import (
 	"github.com/govwa/util/config"
 	"github.com/govwa/util/middleware"
 	"github.com/govwa/vulnerability/csa"
-	"github.com/govwa/vulnerability/idors"
+	"github.com/govwa/vulnerability/idor"
 	"github.com/govwa/vulnerability/sqli"
 	"github.com/govwa/vulnerability/xss"
 )
@@ -51,7 +51,7 @@ func main() {
 	user := user.New()
 	sqlI := sqli.New()
 	xss := xss.New()
-	idor := idors.New()
+	idor := idor.New()
 	csa := csa.New()
 	setup := setup.New()
 	setting := setting.New()

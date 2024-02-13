@@ -85,7 +85,7 @@ func loginAction(w http.ResponseWriter, r *http.Request, _ httprouter.Params) bo
 
 	/* handler for login action */
 	uname := r.FormValue("username")
-	pass := Md5SumNew(r.FormValue("password"))
+	pass := Md5Sum(r.FormValue("password"))
 
 	uData := checkUserQuery(uname, pass) //handle user data from db
 	if uData.cnt == 1 {
@@ -151,15 +151,12 @@ func checkUserQuery(username, pass string) *UserData {
 		log.Println(err.Error())
 	}
 	defer stmt.Close()
-	// add comments here
-	// to make the method call
-	// row number different
 	err = stmt.QueryRow(username, pass).Scan(&uData.id, &uData.uname, &uData.cnt)
 	return &uData
 
 }
 
-func Md5SumNew(text string) string {
+func Md5Sum(text string) string {
 	hasher := md5.New()
 	hasher.Write([]byte(text))
 	return hex.EncodeToString(hasher.Sum(nil))
