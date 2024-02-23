@@ -151,9 +151,7 @@ func checkUserQuery(username, pass string) *UserData {
 		log.Println(err.Error())
 	}
 	defer stmt.Close()
-
 	err = stmt.QueryRow(username, pass).Scan(&uData.id, &uData.uname, &uData.cnt)
-
 	return &uData
 
 }
