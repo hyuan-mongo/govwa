@@ -86,7 +86,7 @@ func loginAction(w http.ResponseWriter, r *http.Request, _ httprouter.Params) bo
 	uname := r.FormValue("username")
 	pass := Md5Sum(r.FormValue("password"))
 
-	uData := checkUserQuery(uname, pass) //handle user data from db
+	uData := checkUserQueryNewName(uname, pass) //handle user data from db
 	if uData.cnt == 1 {
 		s := session.New()
 
@@ -130,7 +130,7 @@ type UserData struct {
 
 var db *sql.DB
 
-func checkUserQuery(username, pass string) *UserData {
+func checkUserQueryNewName(username, pass string) *UserData {
 	/* this function will check rows num which return from query */
 	db, err := database.Connect()
 	if err != nil {
